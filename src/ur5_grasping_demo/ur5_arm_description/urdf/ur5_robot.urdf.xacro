@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="ur5" >
+
+    <link name="world" />
+    <!-- common stuff -->
+    <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
+    <!-- ur5 -->
+    <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
+    <!-- 加载arm,相当于前面是函数，下面这个是引用-->
+    <xacro:ur5_robot prefix="" joint_limited="false"/>
+
+    <!-- robotiq 85 -->
+    <xacro:include filename="$(find robotiq_85_description)/urdf/robotiq_85_gripper.urdf.xacro" />
+    <!-- gripper，加载夹爪，并链接到ur5的ee_link -->
+    <xacro:robotiq_85_gripper prefix="" parent="ee_link" >
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:robotiq_85_gripper>
+
+    <!-- kinect_v2 -->
+    <xacro:include filename="$(find kinect_v2)/urdf/kinect_v2.urdf.xacro" />
+    <!-- camera,加载摄像头,并链接到world -->
+    <xacro:kinect_v2  parent="world" >
+        <origin xyz="0.4 0 2.0" rpy="0 1.57 0" />
+    </xacro:kinect_v2>
+
+
+    <!-- 创造一个柱子，把ur5放在上面 -->
+    <!-- Pilar property -->
+    <xacro:property name="pilar_height" value="0.9"/>
+    <xacro:property name="pilar_radius" value="0.07"/>
+
+    <link name="robot_pilar">
+        <visual>
+            <geometry>
+                <cylinder length="${pilar_height}" radius="${pilar_radius}"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0 0 .8 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder length="${pilar_height}" radius="${pilar_radius}"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="1"/>
+            <inertia ixx="0.145833" ixy="0.0" ixz="0.0"
+                     iyy="0.145833" iyz="0.0"
+                     izz="0.125"/>
+        </inertial> 
+    </link>
+
+
+    <!-- 对ur5与 自定义柱子 进行链接 -->
+    <!-- 柱子与世界 -->
+    <joint name="pilar_to_world" type="fixed">
+        <parent link="world"/>
+        <child link="robot_pilar"/>
+        <origin xyz="0 0 ${pilar_height/2}" rpy="0 0 0"/>
+    </joint>
+    <!-- ur5与柱子 -->
+    <joint name="robot_to_pilar" type="fixed">
+        <parent link="robot_pilar"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 ${pilar_height/2}" rpy="0 0 0"/>
+    </joint>
+
+
+</robot>
