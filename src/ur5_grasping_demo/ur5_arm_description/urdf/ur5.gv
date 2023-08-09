@@ -75,6 +75,6 @@ node [shape=ellipse, color=blue, fontcolor=blue];
 "gripper_finger2_joint" -> "gripper_finger2_knuckle_link"
 "gripper_finger2_knuckle_link" -> "gripper_finger2_finger_joint" [label="xyz: -0.00408552 -0.031486 0 \nrpy: 0 -0 0"]
 "gripper_finger2_finger_joint" -> "gripper_finger2_finger_link"
-"wrist_3_link" -> "wrist_3_link-tool0_fixed_joint" [label="xyz: 0 0.0923 0 \nrpy: -1.5708 0 0"]
+"wrist_3_link" -> "wrist_3_link-tool0_fixed_joint" [label="xyz: 0 0.1423 0 \nrpy: -1.5708 0 0"]
 "wrist_3_link-tool0_fixed_joint" -> "tool0"
 }

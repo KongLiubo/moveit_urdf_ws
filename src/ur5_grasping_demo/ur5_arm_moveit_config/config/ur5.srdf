@@ -53,7 +53,7 @@
         <joint name="gripper_finger1_joint" value="0"/>
     </group_state>
     <group_state name="close" group="gripper">
-        <joint name="gripper_finger1_joint" value="0.7985"/>
+        <joint name="gripper_finger1_joint" value="0.8013"/>
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="robot_gripper" parent_link="tool0" group="gripper"/>
@@ -105,6 +105,7 @@
     <disable_collisions link1="gripper_finger1_finger_tip_link" link2="gripper_finger2_finger_link" reason="Never"/>
     <disable_collisions link1="gripper_finger1_finger_tip_link" link2="gripper_finger2_inner_knuckle_link" reason="Never"/>
     <disable_collisions link1="gripper_finger1_finger_tip_link" link2="gripper_finger2_knuckle_link" reason="Never"/>
+    <disable_collisions link1="gripper_finger1_finger_tip_link" link2="kinect2_base_link" reason="Never"/>
     <disable_collisions link1="gripper_finger1_finger_tip_link" link2="wrist_1_link" reason="Never"/>
     <disable_collisions link1="gripper_finger1_finger_tip_link" link2="wrist_2_link" reason="Never"/>
     <disable_collisions link1="gripper_finger1_finger_tip_link" link2="wrist_3_link" reason="Never"/>

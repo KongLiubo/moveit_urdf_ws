@@ -7,5 +7,5 @@ moveit_setup_assistant_config:
     relative_path: config/ur5.srdf
   CONFIG:
     author_name: 123
-    author_email: 123456789@163.com
-    generated_timestamp: 1691584956
+    author_email: 123456@qq.com
+    generated_timestamp: 1691592621
