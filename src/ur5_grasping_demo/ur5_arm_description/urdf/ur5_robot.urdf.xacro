@@ -8,13 +8,13 @@
     <!-- ur5 -->
     <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
     <!-- 加载arm,相当于前面是函数，下面这个是引用-->
-    <xacro:ur5_robot prefix="" joint_limited="false"/>
+    <xacro:ur5_robot prefix="" joint_limited="false" extend_length="0.01"/>
 
     <!-- robotiq 85 -->
     <xacro:include filename="$(find robotiq_85_description)/urdf/robotiq_85_gripper.urdf.xacro" />
     <!-- gripper，加载夹爪，并链接到ur5的ee_link -->
     <xacro:robotiq_85_gripper prefix="" parent="ee_link" >
-    <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
     </xacro:robotiq_85_gripper>
 
     <!-- kinect_v2 -->

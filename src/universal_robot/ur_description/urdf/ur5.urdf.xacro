@@ -23,7 +23,7 @@
     wrist_3_lower_limit:=${-pi}    wrist_3_upper_limit:=${pi}
     transmission_hw_interface:=hardware_interface/PositionJointInterface
     safety_limits:=false safety_pos_margin:=0.15
-    safety_k_position:=20">
+    safety_k_position:=20 extend_length:=0">
 
     <!-- Inertia parameters -->
     <xacro:property name="base_mass" value="4.0" />  <!-- This mass might be incorrect -->
@@ -373,7 +373,7 @@
     <!-- Frame coincident with all-zeros TCP on UR controller -->
     <link name="${prefix}tool0"/>
     <joint name="${prefix}wrist_3_link-tool0_fixed_joint" type="fixed">
-      <origin xyz="0 ${wrist_3_length} 0" rpy="${pi/-2.0} 0 0"/>
+      <origin xyz="0 ${wrist_3_length+extend_length} 0" rpy="${pi/-2.0} 0 0"/>
       <parent link="${prefix}wrist_3_link"/>
       <child link="${prefix}tool0"/>
     </joint>
