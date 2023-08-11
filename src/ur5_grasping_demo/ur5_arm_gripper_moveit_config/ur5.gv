@@ -1,0 +1,62 @@
+digraph G {
+node [shape=box];
+"world" [label="world"];
+"kinect2_base_link" [label="kinect2_base_link"];
+"kinect2_rgb_link" [label="kinect2_rgb_link"];
+"kinect2_ir_link" [label="kinect2_ir_link"];
+"kinect2_ir_optical_frame" [label="kinect2_ir_optical_frame"];
+"kinect2_rgb_optical_frame" [label="kinect2_rgb_optical_frame"];
+"robot_pilar" [label="robot_pilar"];
+"base_link" [label="base_link"];
+"base" [label="base"];
+"shoulder_link" [label="shoulder_link"];
+"upper_arm_link" [label="upper_arm_link"];
+"forearm_link" [label="forearm_link"];
+"wrist_1_link" [label="wrist_1_link"];
+"wrist_2_link" [label="wrist_2_link"];
+"wrist_3_link" [label="wrist_3_link"];
+"ee_link" [label="ee_link"];
+"pg70_palm_link" [label="pg70_palm_link"];
+"pg70_finger_left_link" [label="pg70_finger_left_link"];
+"pg70_finger_right_link" [label="pg70_finger_right_link"];
+"tool0" [label="tool0"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"world" -> "kinect2_joint" [label="xyz: 0.4 0 2 \nrpy: 0 1.5708 -0"]
+"kinect2_joint" -> "kinect2_base_link"
+"kinect2_base_link" -> "kinect2_rgb_joint" [label="xyz: 0.032 -0.095 0.042015 \nrpy: 0 -0 0"]
+"kinect2_rgb_joint" -> "kinect2_rgb_link"
+"kinect2_rgb_link" -> "kinect2_ir_joint" [label="xyz: 0 0.05157 0 \nrpy: 0 -0 0"]
+"kinect2_ir_joint" -> "kinect2_ir_link"
+"kinect2_ir_link" -> "kinect2_ir_optical_frame_joint" [label="xyz: 0 0 0 \nrpy: -1.57079 -5.55112e-17 -1.57079"]
+"kinect2_ir_optical_frame_joint" -> "kinect2_ir_optical_frame"
+"kinect2_rgb_link" -> "kinect2_rgb_optical_frame_joint" [label="xyz: 0 0 0 \nrpy: -1.57079 -5.55112e-17 -1.57079"]
+"kinect2_rgb_optical_frame_joint" -> "kinect2_rgb_optical_frame"
+"world" -> "pilar_to_world" [label="xyz: 0 0 0.45 \nrpy: 0 -0 0"]
+"pilar_to_world" -> "robot_pilar"
+"robot_pilar" -> "robot_to_pilar" [label="xyz: 0 0 0.45 \nrpy: 0 -0 0"]
+"robot_to_pilar" -> "base_link"
+"base_link" -> "base_link-base_fixed_joint" [label="xyz: 0 0 0 \nrpy: 0 0 -3.14159"]
+"base_link-base_fixed_joint" -> "base"
+"base_link" -> "shoulder_pan_joint" [label="xyz: 0 0 0.089159 \nrpy: 0 -0 0"]
+"shoulder_pan_joint" -> "shoulder_link"
+"shoulder_link" -> "shoulder_lift_joint" [label="xyz: 0 0.13585 0 \nrpy: 0 1.5708 -0"]
+"shoulder_lift_joint" -> "upper_arm_link"
+"upper_arm_link" -> "elbow_joint" [label="xyz: 0 -0.1197 0.425 \nrpy: 0 -0 0"]
+"elbow_joint" -> "forearm_link"
+"forearm_link" -> "wrist_1_joint" [label="xyz: 0 0 0.39225 \nrpy: 0 1.5708 -0"]
+"wrist_1_joint" -> "wrist_1_link"
+"wrist_1_link" -> "wrist_2_joint" [label="xyz: 0 0.093 0 \nrpy: 0 -0 0"]
+"wrist_2_joint" -> "wrist_2_link"
+"wrist_2_link" -> "wrist_3_joint" [label="xyz: 0 0 0.09465 \nrpy: 0 -0 0"]
+"wrist_3_joint" -> "wrist_3_link"
+"wrist_3_link" -> "ee_fixed_joint" [label="xyz: 0 0.0823 0 \nrpy: 0 -0 1.5708"]
+"ee_fixed_joint" -> "ee_link"
+"ee_link" -> "pg70_palm_joint" [label="xyz: 0 0 0 \nrpy: 0 1.5708 -0"]
+"pg70_palm_joint" -> "pg70_palm_link"
+"pg70_palm_link" -> "pg70_finger_left_joint" [label="xyz: 0 0 0.0789 \nrpy: 0 -0 0"]
+"pg70_finger_left_joint" -> "pg70_finger_left_link"
+"pg70_palm_link" -> "pg70_finger_right_joint" [label="xyz: 0 0 0.0789 \nrpy: 0 0 0"]
+"pg70_finger_right_joint" -> "pg70_finger_right_link"
+"wrist_3_link" -> "wrist_3_link-tool0_fixed_joint" [label="xyz: 0 0.1423 0 \nrpy: -1.5708 0 0"]
+"wrist_3_link-tool0_fixed_joint" -> "tool0"
+}
